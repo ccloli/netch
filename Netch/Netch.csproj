@@ -20,7 +20,7 @@
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <TargetFramework>net8.0-windows7.0</TargetFramework>
-	<LangVersion>12.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <BaseOutputPath>netch</BaseOutputPath>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>

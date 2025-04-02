@@ -20,14 +20,14 @@ namespace Netch.Controllers;
 
 public static class UpdateChecker
 {
-    public const string Owner = @"domparso";
+    public const string Owner = @"ccloli";
     public const string Repo = @"netch";
 
     public const string Name = @"Netch";
-    public const string Copyright = @"Copyright © 2019 - 2024";
+    public const string Copyright = @"Copyright © 2019 - 2025";
 
-    public const string AssemblyVersion = @"1.9.9";
-    private const string Suffix = @"";
+    public const string AssemblyVersion = @"1.9.10";
+    private const string Suffix = @"cc";
 
     public static readonly string Version = $"{AssemblyVersion}{(string.IsNullOrEmpty(Suffix) ? "" : $"-{Suffix}")}";
 
