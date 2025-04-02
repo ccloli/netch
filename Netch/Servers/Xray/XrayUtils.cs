@@ -55,8 +55,13 @@ public static class XrayUtils
             if (server.TLSSecureType != "none")
             {
                 server.ServerName = parameter.Get("sni") ?? "";
+            }
 
-                if (server.TLSSecureType == "reality" && server is VLESSServer vlessServer)
+            if (server is VLESSServer vlessServer)
+            {
+                vlessServer.Flow = parameter.Get("flow") ?? "none";
+
+                if (vlessServer.TLSSecureType == "reality")
                 {
                     vlessServer.Fingerprint = parameter.Get("fp");
                     vlessServer.PublicKey = parameter.Get("pbk");
@@ -145,8 +150,17 @@ public static class XrayUtils
             {
                 parameter.Add("flow", "xtls-rprx-direct");
             }
+        }
+        
+        if (server is VLESSServer vlessServer)
+        {
+            if (vlessServer.TLSSecureType != "xtls")
+            {
+                if (!string.IsNullOrEmpty(vlessServer.Flow) && vlessServer.Flow != "none")
+                    parameter.Add("flow", vlessServer.Flow);
+            }
 
-            if (server.TLSSecureType == "reality" && server is VLESSServer vlessServer)
+            if (vlessServer.TLSSecureType == "reality")
             {
                 if (!string.IsNullOrEmpty(vlessServer.Fingerprint))
                     parameter.Add("fp", vlessServer.Fingerprint);

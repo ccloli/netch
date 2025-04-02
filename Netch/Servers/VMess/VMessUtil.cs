@@ -61,7 +61,7 @@ public class VMessUtil : IServerUtil
             return "vmess://" + ShareLink.URLSafeBase64Encode(vmessJson);
         }
 
-        return V2rayUtils.GetVShareLink(s);
+        return XrayUtils.GetVShareLink(s);
     }
 
     public IServerController GetController()
@@ -80,7 +80,7 @@ public class VMessUtil : IServerUtil
         }
         catch
         {
-            return V2rayUtils.ParseVUri(text);
+            return XrayUtils.ParseVUri(text);
         }
 
         V2rayNJObject vmess = JsonSerializer.Deserialize<V2rayNJObject>(s,
