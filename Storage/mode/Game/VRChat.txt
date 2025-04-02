@@ -3,3 +3,6 @@ install.exe
 VRChat.exe
 UnityCrashHandler64.exe
 yt-dlp.exe
+EasyAntiCheat_EOS.exe
+start_protected_game.exe
+launch.exe
