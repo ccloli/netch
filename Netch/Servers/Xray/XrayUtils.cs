@@ -22,7 +22,7 @@ public static class XrayUtils
             var parameter = HttpUtility.ParseQueryString(text.Split('?')[1]);
             text = text.Substring(0, text.IndexOf("?", StringComparison.Ordinal));
             server.TransferProtocol = parameter.Get("type") ?? "tcp";
-            server.PacketEncoding = parameter.Get("packetEncoding") ?? "xudp";
+            server.PacketEncoding = parameter.Get("packetEncoding") ?? "none";
             server.EncryptMethod = parameter.Get("encryption") ?? scheme switch { "vless" => "none", _ => "auto" };
             switch (server.TransferProtocol)
             {
@@ -55,6 +55,14 @@ public static class XrayUtils
             if (server.TLSSecureType != "none")
             {
                 server.ServerName = parameter.Get("sni") ?? "";
+
+                if (server.TLSSecureType == "reality" && server is VLESSServer vlessServer)
+                {
+                    vlessServer.Fingerprint = parameter.Get("fp");
+                    vlessServer.PublicKey = parameter.Get("pbk");
+                    vlessServer.ShortId = parameter.Get("sid");
+                    vlessServer.SpiderX = Uri.UnescapeDataString(parameter.Get("spx") ?? "");
+                }
             }
         }
 
@@ -136,6 +144,21 @@ public static class XrayUtils
             if (server.TLSSecureType == "xtls")
             {
                 parameter.Add("flow", "xtls-rprx-direct");
+            }
+
+            if (server.TLSSecureType == "reality" && server is VLESSServer vlessServer)
+            {
+                if (!string.IsNullOrEmpty(vlessServer.Fingerprint))
+                    parameter.Add("fp", vlessServer.Fingerprint);
+
+                if (!string.IsNullOrEmpty(vlessServer.PublicKey))
+                    parameter.Add("pbk", vlessServer.PublicKey);
+
+                if (!string.IsNullOrEmpty(vlessServer.ShortId))
+                    parameter.Add("sid", vlessServer.ShortId);
+
+                if (!string.IsNullOrEmpty(vlessServer.SpiderX))
+                    parameter.Add("spx", Uri.EscapeDataString(vlessServer.SpiderX));
             }
         }
 
