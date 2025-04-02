@@ -59,7 +59,7 @@ public static class XrayUtils
 
             if (server is VLESSServer vlessServer)
             {
-                vlessServer.Flow = parameter.Get("flow") ?? "none";
+                vlessServer.Flow = parameter.Get("flow") ?? "";
 
                 if (vlessServer.TLSSecureType == "reality")
                 {

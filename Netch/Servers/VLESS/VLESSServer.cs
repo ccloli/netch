@@ -37,7 +37,7 @@ public class VLESSGlobal
 {
     public static readonly List<string> Flows = new()
     {
-        "none",
+        "",
         "xtls-rprx-vision",
         "xtls-rprx-vision-udp443"
     };
