@@ -19,7 +19,8 @@
     <AnalysisMode>Default</AnalysisMode>
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <TargetFramework>net6.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+	<LangVersion>12.0</LangVersion>
     <BaseOutputPath>netch</BaseOutputPath>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
@@ -55,6 +56,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Nullable.Extended.Analyzer" Version="1.10.4539">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -95,9 +97,6 @@
 
   <ItemGroup>
     <None Remove="NativeMethods.txt" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>D:\Tools\C# DLL\netstandard2.0\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <None Update="NOTICE.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
