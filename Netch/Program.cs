@@ -101,9 +101,11 @@ public static class Program
         Application.ThreadException += Application_OnException;
         Application.ApplicationExit += Application_OnExit;
 
-        Application.SetHighDpiMode(HighDpiMode.DpiUnawareGdiScaled);
+        Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
+        Global.MainForm.AutoScaleMode = AutoScaleMode.Dpi;
+        Global.MainForm.AutoScaleDimensions = new SizeF(96F, 96F);
         Application.Run(Global.MainForm);
     }
 
