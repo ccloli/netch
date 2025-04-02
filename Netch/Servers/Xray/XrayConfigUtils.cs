@@ -11,7 +11,8 @@ public static class XrayConfigUtils
     {
         var xrayConfig = new XrayConfig
         {
-            log = new {
+            log = new
+            {
                 access = "",
                 error = "",
                 loglevel = "warning"
@@ -192,7 +193,8 @@ public static class XrayConfigUtils
             {
                 tag = "block",
                 protocol = "blackhole",
-                settings = new {
+                settings = new
+                {
                     response = new
                     {
                         type = "http"
@@ -231,6 +233,19 @@ public static class XrayConfigUtils
                             break;
                         case "xtls":
                             streamSettings.Add("xtlsSettings", tlsSettings);
+                            break;
+                        case "reality":
+                            var realitySettings = new
+                            {
+                                allowInsecure = Global.Settings.V2RayConfig.AllowInsecure,
+                                serverName = vless.ServerName == "" ? vless.Hostname : vless.ServerName,
+                                show = false,
+                                fingerprint = vless.Fingerprint,
+                                publicKey = vless.PublicKey,
+                                shortId = vless.ShortId,
+                                spiderX = vless.SpiderX
+                            };
+                            streamSettings.Add("realitySettings", realitySettings);
                             break;
                     }
                 }
@@ -272,12 +287,12 @@ public static class XrayConfigUtils
         return streamSettings;
     }
 
-    
+
     private static async Task<X_DNS> dnss(Server server)
     {
         var tmp = new X_DNS
         {
-            servers = new List<object> () { }
+            servers = new List<object>() { }
         };
 
         if (Global.Settings.TUNTAP.DNS.Length != 0)
@@ -291,7 +306,8 @@ public static class XrayConfigUtils
     private static async Task<X_Route> routes(Server server)
     {
         // https://xtls.github.io/Xray-docs-next/config/routing.html#routingobject
-        var routes = new X_Route() {
+        var routes = new X_Route()
+        {
             domainStrategy = "AsIs",
             rules = new List<object>() {
                 new

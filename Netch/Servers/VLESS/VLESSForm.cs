@@ -45,6 +45,10 @@ internal class VLESSForm : ServerForm
             server.UseMux?.ToString().ToLower() ?? "");
 
         CreateComboBox("TLSSecure", "TLS Secure", VLESSGlobal.TLSSecure, s => server.TLSSecureType = s, server.TLSSecureType);
+        CreateTextBox("Fingerprint", "Fingerprint (Reality)", s => true, s => server.Fingerprint = s, server.Fingerprint);
+        CreateTextBox("PublicKey", "PublicKey (Reality)", s => true, s => server.PublicKey = s, server.PublicKey);
+        CreateTextBox("ShortId", "ShortId (Reality)", s => true, s => server.ShortId = s, server.ShortId);
+        CreateTextBox("SpiderX", "SpiderX (Reality)", s => true, s => server.SpiderX = s, server.SpiderX);
     }
 
     protected override string TypeName { get; } = "VLESS";
